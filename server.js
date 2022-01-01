@@ -3,13 +3,17 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config({ path: "./.env"});
 
-const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(require("./routes/record"));
 
 const dbo = require("./db/conn");
 
+let port = process.env.PORT;
+
+if (port == null || port == "") {
+  port = 5000;
+}
 app.listen(port, () => {
     dbo.connectToServer(function (err) {
         if (err) console.error(err);
