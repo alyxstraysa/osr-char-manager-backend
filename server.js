@@ -10,6 +10,7 @@ app.use(require("./routes/record"));
 const dbo = require("./db/conn");
 
 let port = process.env.PORT;
+console.log("Heroku port:" + port);
 
 if (port == null || port == "") {
   port = 5000;
