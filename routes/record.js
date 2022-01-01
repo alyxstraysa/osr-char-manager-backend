@@ -6,7 +6,7 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 recordRoutes.route("/record").get(function (req, res) {
-    let db_connect = dbo.getDb("osrdb");
+    let db_connect = dbo.getDb();
     db_connect
       .collection("users")
       .find({})
@@ -16,6 +16,7 @@ recordRoutes.route("/record").get(function (req, res) {
       });
   });
 
+/*
 recordRoutes.route("/record/:id").get(function (req, res) {
 let db_connect = dbo.getDb();
 let myquery = { _id: ObjectId( req.params.id )};
@@ -71,5 +72,6 @@ db_connect.collection("records").deleteOne(myquery, function (err, obj) {
     response.status(obj);
 });
 });
+*/
 
 module.exports = recordRoutes;
