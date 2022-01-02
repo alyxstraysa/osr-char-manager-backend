@@ -20,13 +20,6 @@ charRoutes.route('/characters').get((req, res) => {
 charRoutes.route("/characters/add").post(async function (req, response) {
     let db_connect = dbo.getDb();
 
-    if (req.body.username == null || req.body.username == "") {
-        throw err;
-    }
-    else if (req.body.password == null || req.body.password == "") {
-        throw err;
-    }
-
     var hashids = new Hashids(process.env.PW_HASH);
     var hash = hashids.encode(Date.now());
 
@@ -51,21 +44,21 @@ charRoutes.route("/characters/add").post(async function (req, response) {
             B: req.body.saving_throws.B,
             S: req.body.saving_throws.S,
         },
-        HP: req.body.HP,
-        AC: req.body.AC,
-        MEL: req.body.MEL,
-        MAX_HP: req.body.MAX_HP,
-        UNAC: req.body.UNAC,
-        DEX_AC: req.body.DEX_AC,
-        MIS: req.body.MIS,
-        INIT: req.body.INIT,
-        LISTENDOORS: req.body.LISTENDOORS,
-        OPENSTUCK: req.body.OPENSTUCK,
-        SECRETDOOR: req.body.SECRETDOOR,
-        ROOMTRAP: req.body.ROOMTRAP,
-        OVERLAND_SPEED: req.body.OVERLAND_SPEED,
-        EXPLORATION_SPEED: req.body.EXPLORATION_SPEED,
-        ENCOUNTER_SPEED: req.body.ENCOUNTER_SPEED,
+        hp: req.body.hp,
+        ac: req.body.ac,
+        mel: req.body.mel,
+        max_hp: req.body.max_hp,
+        unac: req.body.unac,
+        dex_ac: req.body.dex_ac,
+        mis: req.body.mis,
+        init: req.body.init,
+        listendoors: req.body.listendoors,
+        openstuck: req.body.openstuck,
+        secretdoor: req.body.secretdoor,
+        roomtrap: req.body.roomtrap,
+        overland_speed: req.body.overland_speed,
+        exploration_speed: req.body.exploration_speed,
+        encounter_speed: req.body.encounter_speed,
     };
 
     db_connect.collection("characters").insertOne(character, function (err, res) {
