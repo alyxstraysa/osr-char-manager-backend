@@ -54,6 +54,14 @@ userRoutes.route("/users/:username").get(function(req, res){
     });
 });
 
+userRoutes.route("/users/id/:id").get(function(req, res){
+    let db_connect = dbo.getDb();
+    db_connect.collection("users").findOne({uniqueid: req.params.id}, function(err, result){
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
 /*
 
 // This section will help you update a record by id.
