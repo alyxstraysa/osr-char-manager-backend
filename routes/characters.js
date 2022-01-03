@@ -16,9 +16,17 @@ charRoutes.route('/characters').get((req, res) => {
       });
   });
 
+
+charRoutes.route('/characters/users/:useruniqueid').get((req, res) => {
+    const db_connect = dbo.getDb();
+    db_connect.collection('characters').find({useruniqueid: req.params.useruniqueid}).toArray((err, result) => {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
 charRoutes.route('/characters/:id').get((req, res) => {
     const db_connect = dbo.getDb();
-
     db_connect.collection("characters").findOne({charuniqueid: req.params.id}, function(err, result){
         if (err) throw err;
         res.json(result);
